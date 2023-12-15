@@ -1,4 +1,4 @@
 FROM cubejs/cube:latest
 
-COPY /cubejs/cube.js .
+COPY /cube.js .
 RUN yarn install
