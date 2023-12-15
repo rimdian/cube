@@ -1,0 +1,16 @@
+{
+  "name": "rimdian-cubejs-server",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "cubejs-server"
+  },
+  "template": "docker",
+  "templateVersion": "0.30.35",
+  "dependencies": {
+    "@cubejs-backend/mysql-driver": "^0.33.47",
+    "@cubejs-backend/server": "^0.33.47",
+    "axios": "^1.4.0",
+    "lodash": "^4.17.21"
+  }
+}
