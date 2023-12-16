@@ -12,12 +12,10 @@ const espaceQuotes = (str) => {
 
 const agent = new https.Agent({
     keepAlive: true,
-    timeout: 10 * 1000, //10secs
+    timeout: 60 * 1000, //10secs
     rejectUnauthorized: false
 })
 
-// returns hardcoded schemas
-// in the future, should connect to the DB to request custom tables/columns
 class RMDFileRepository {
 
     constructor(securityContext) {
@@ -32,7 +30,6 @@ class RMDFileRepository {
             // console.log('Fetching schema files from the API ' + this.securityContext.schema_url)
 
             axios.get(this.securityContext.schema_url, {
-                // httpsAgent that doesnt verificate the certificate
                 httpsAgent: agent,
                 headers: {
                     'Content-Type': 'application/json',
@@ -180,6 +177,7 @@ class RMDFileRepository {
     //     { fileName: 'Devices', content: Devices },
     //     { fileName: 'Orders', content: Orders },
     //     { fileName: 'Carts', content: Carts },
+    //     ...
     // ];
 }
 
@@ -218,10 +216,6 @@ module.exports = {
         }
         console.log('running cube.js driverFactory')
 
-        // we don't use ssl in local dev
-        // if (process.env.DB_CA_CERT_BASE64 && process.env.DB_CA_CERT_BASE64 !== "") {
-        //     cfg.ssl = { ca: Buffer.from(process.env.DB_CA_CERT_BASE64, 'base64').toString('utf8') }
-        // }
         return new MysqlDriver(cfg)
     },
 
