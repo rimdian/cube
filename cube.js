@@ -220,17 +220,19 @@ module.exports = {
     },
 
     schemaVersion: ({ securityContext }) => {
+        const currentTimestamp = new Date().getTime()
+
         if (!securityContext || !securityContext.workspace_id) return 0
 
         if (!lastSchemaUpdate[securityContext.workspace_id]) {
-            lastSchemaUpdate[securityContext.workspace_id] = new Date().getTime()
+            lastSchemaUpdate[securityContext.workspace_id] = currentTimestamp
             return lastSchemaUpdate[securityContext.workspace_id]
         }
 
         // check if the lastSchemaUpdate is older than the cache timeout
-        if (lastSchemaUpdate[securityContext.workspace_id] < new Date(new Date() - 1000 * refreshSchemaEveryXsecs)) {
+        if (lastSchemaUpdate[securityContext.workspace_id] < new Date(currentTimestamp - (1000 * refreshSchemaEveryXsecs)).getTime()) {
             // update the lastSchemaUpdate
-            lastSchemaUpdate[securityContext.workspace_id] = new Date().getTime()
+            lastSchemaUpdate[securityContext.workspace_id] = currentTimestamp
         }
 
         return lastSchemaUpdate[securityContext.workspace_id]
