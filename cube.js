@@ -2,7 +2,9 @@ const MysqlDriver = require('@cubejs-backend/mysql-driver');
 const axios = require('axios');
 const https = require('https');
 const _ = require('lodash');
-require('dotenv').config(); // required for development with .env file
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config(); // required for development with .env file
+}
 
 const refreshSchemaEveryXsecs = process.env.NO_CACHE ? 1 : 60;
 const lastSchemaUpdate = {}
