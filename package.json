@@ -11,6 +11,7 @@
     "@cubejs-backend/mysql-driver": "^0.33.47",
     "@cubejs-backend/server": "^0.33.47",
     "axios": "^1.4.0",
+    "dotenv": "^16.4.5",
     "lodash": "^4.17.21"
   }
 }

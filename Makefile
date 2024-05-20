@@ -4,5 +4,5 @@ dev:
 
 build:
 	@echo "Build server"
-	# docker build . --file Dockerfile --progress=plain --no-cache
-	docker build . --file Dockerfile --progress=plain
+	# docker build . --file Dockerfile --progress=plain --no-cache --platform linux/amd64
+	docker build . --file Dockerfile --progress=plain --platform linux/amd64
